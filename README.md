@@ -28,7 +28,7 @@ ai-thingspeak-chatbot
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/Akatzz12/ai-thingspeak-chatbot 
    cd ai-thingspeak-chatbot
    ```
 
