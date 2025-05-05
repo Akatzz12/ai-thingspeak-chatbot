@@ -48,6 +48,7 @@ ai-thingspeak-chatbot
    GEMINI_API_KEY=your_gemini_api_key
    THINGSPEAK_API_KEY=your_thingspeak_api_key
    THINGSPEAK_CHANNEL_ID=your_channel_id
+   GEMINI_API_URL=your_gemini_api_url
    ```
 
 5. Run the application:
