@@ -40,22 +40,25 @@ class Chatbot:
                          temperature_data['Time (timezone)'].min()).total_seconds() / 3600
             
             base_data = f"""
-            Available Data:
-            - Latest: {latest_temp:.2f}°C at {latest_time}
-            - Minimum: {min_temp:.2f}°C at {min_time}
-            - Maximum: {max_temp:.2f}°C at {max_time}
-            - Average: {avg_temp:.2f}°C
+            Available Data (in Fahrenheit):
+            - Latest: {latest_temp:.2f}°F at {latest_time}
+            - Minimum: {min_temp:.2f}°F at {min_time}
+            - Maximum: {max_temp:.2f}°F at {max_time}
+            - Average: {avg_temp:.2f}°F
             Time span: {time_range:.1f} hours ({len(temperature_data)} readings)
+            
+            Note: Normal room temperature is typically between 68°F and 72°F (20-22°C)
             """
             
             if "maximum" in message.lower() or "highest" in message.lower():
                 prompt = f"""
                 {base_data}
                 
-                Focus on analyzing the maximum temperature:
+                Focus on analyzing the maximum temperature in Fahrenheit:
                 1. State the maximum temperature and when it occurred
                 2. Compare it with the average temperature
-                3. Discuss any notable circumstances around this peak
+                3. Discuss if this temperature is within normal range or potentially concerning
+                4. Consider typical Fahrenheit ranges for context (e.g., room temp 68-72°F)
                 
                 Conclusion: Provide a brief summary about this maximum value and its significance.
                 """
@@ -63,10 +66,11 @@ class Chatbot:
                 prompt = f"""
                 {base_data}
                 
-                Focus on analyzing the minimum temperature:
+                Focus on analyzing the minimum temperature in Fahrenheit:
                 1. State the minimum temperature and when it occurred
                 2. Compare it with the average temperature
-                3. Discuss any notable circumstances around this low point
+                3. Discuss if this temperature is within normal range or potentially concerning
+                4. Consider typical Fahrenheit ranges for context (e.g., room temp 68-72°F)
                 
                 Conclusion: Provide a brief summary about this minimum value and its significance.
                 """
@@ -74,10 +78,11 @@ class Chatbot:
                 prompt = f"""
                 {base_data}
                 
-                Provide a comprehensive analysis:
+                Provide a comprehensive analysis using Fahrenheit measurements:
                 1. Overview of temperature range and variation
-                2. Key patterns in the readings
-                3. Notable changes or trends
+                2. Compare readings with normal temperature ranges
+                3. Identify any concerning patterns or outliers
+                4. Consider comfort zones (68-72°F) and safety thresholds
                 
                 Conclusion: Summarize the key findings and highlight any areas needing attention.
                 """
@@ -86,9 +91,10 @@ class Chatbot:
                 {base_data}
                 
                 Answer the specific question: {message}
-                1. Provide a direct answer based on the data
-                2. Add relevant context from available readings
-                3. Note any limitations in the available data
+                1. Provide a direct answer using Fahrenheit measurements
+                2. Add relevant context about normal temperature ranges
+                3. Note any unusual readings or patterns
+                4. Consider typical room temperature (68-72°F) for context
                 
                 Conclusion: Summarize the key points related to this specific query.
                 """
